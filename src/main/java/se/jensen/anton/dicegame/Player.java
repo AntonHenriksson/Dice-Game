@@ -5,12 +5,15 @@ public class Player {
     private String lname;
     private int score;
 
+    Player player1 = new Player();
+    Player player2 = new Player();
+
     //tom konstruktor
     public Player() {
     }
 
     // Kanske ändra här?
-    public String getFullName(Player player) {
+    public String getFullName() {
         return this.fname + " " + this.lname;
 
     }
@@ -35,11 +38,11 @@ public class Player {
     }
 
     public String getFname() {
-        return this.fname;
+        return fname;
     }
 
     public String getLname() {
-        return this.lname;
+        return lname;
     }
 
     public int getScore() {
@@ -51,16 +54,7 @@ public class Player {
     }
 
     public void resetScore() {
-        this.score = 0;
-    }
-
-    public void winnerCompare(Player player1, Player player2) {
-        if (player1.getScore() == player2.getScore()) {
-            System.out.println("Equal, no winner.");
-        } else if (player1.getScore() > player2.getScore()) {
-            System.out.println(player1.getFullName());
-
-        }
+        score = 0;
     }
 
 

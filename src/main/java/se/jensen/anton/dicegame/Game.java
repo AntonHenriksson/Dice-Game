@@ -1,5 +1,6 @@
 package se.jensen.anton.dicegame;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -11,18 +12,22 @@ public class Game {
 
     }
 
-    public boolean quit() {
+    public boolean quitGame() {
         return running = false;
     }
 
-    public void gameRun(Scanner input, Dice dice, Player player1, Player player2) {
+    public void gameRun(Scanner input) {
         while (running) {
             System.out.println("Spelmeny \n1 : Spela\n2 : Stäng av");
-            if (input.nextInt() == 1) {
+            int menuChoice = 0;
+            try {
+                menuChoice = input.nextInt();
+            } throw  new InputMismatchException();
+            if (menuChoice == 1) {
 
 
-            } else if (input.nextInt() == 2) {
-                quit();
+            } else if (menuChoice == 2) {
+                quitGame();
 
             }
 
@@ -43,18 +48,29 @@ public class Game {
     }
 
     public void tossingDice(Scanner input, Player player1, Player player2, Dice dice) {
-        System.out.println("Spelare 1: Tryck enter för att slå ett tärningslag!");
+        System.out.println(player1.getFname() + " : Tryck enter för att slå ett tärningslag!");
         input.nextLine();
         player1.addToScore(dice.rollTheDice());
-        System.out.println("Spelare 2: Tryck enter för att slå ett tärningslag!");
+        System.out.println(player2.getFname() + " : Tryck enter för att slå ett tärningslag!");
         input.nextLine();
         player2.addToScore(dice.rollTheDice());
-        System.out.println("Spelare 1: Tryck enter för att slå ett tärningslag!");
+        System.out.println(player1.getFname() + " : Tryck enter för att slå ett tärningslag!");
         input.nextLine();
         player1.addToScore(dice.rollTheDice());
-        System.out.println("Spelare 2: Tryck enter för att slå ett tärningslag!");
+        System.out.println(player2.getFname() + " : Tryck enter för att slå ett tärningslag!");
         input.nextLine();
         player2.addToScore(dice.rollTheDice());
+    }
+
+    public void winnerCompare(Player player1, Player player2) {
+        if (player1.getScore() == player2.getScore()) {
+            System.out.println("Equal, no winner.");
+        } else if (player1.getScore() > player2.getScore()) {
+            System.out.println(player1.getFullName() + "Wins with :" + player1.getScore());
+
+        } else if (player2.getScore() > player1.getScore()) {
+            System.out.println(player2.getFullName() + "Wins with :" + player2.getScore());
+        }
     }
 
 
