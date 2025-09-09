@@ -1,10 +1,12 @@
 package se.jensen.anton.dicegame;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
     private boolean running = true;
+    Player player1 = new Player();
+    Player player2 = new Player();
+    Dice dice = new Dice();
 
 
     //tom konstruktor
@@ -18,58 +20,53 @@ public class Game {
 
     public void gameRun(Scanner input) {
         while (running) {
-            System.out.println("Spelmeny \n1 : Spela\n2 : Stäng av");
-            int menuChoice = 0;
-            try {
-                menuChoice = input.nextInt();
-            } throw  new InputMismatchException();
-            if (menuChoice == 1) {
+            System.out.println("Game Menu \nPlay\nQuit");
+            String menuChoice = "";
+            menuChoice = input.nextLine();
+            if (menuChoice.equalsIgnoreCase("Play")) {
+
+                System.out.println("Player 1 : ");
+                player1.setPlayers(input);
+                System.out.println("Player 2 : ");
+                player2.setPlayers(input);
+                tossingDice(input);
+                winnerCompare();
+                player1.resetScore();
+                player2.resetScore();
+                input.nextLine();
 
 
-            } else if (menuChoice == 2) {
+            } else if (!menuChoice.equalsIgnoreCase("Quit") && !menuChoice.equalsIgnoreCase("Play")) {
+                System.out.println("Invalid Option");
+            } else if (menuChoice.equalsIgnoreCase("Quit")) {
                 quitGame();
-
             }
 
 
         }
     }
 
-    public void setPlayers(Scanner input, Player player1, Player player2) {
-        System.out.println("Vad heter spelare 1 i förnamn?");
-        player1.setFname(input.nextLine());
-        System.out.println("Vad heter spelare 1 i efternamn?");
-        player1.setLname(input.nextLine());
-        System.out.println("Vad heter spelare 2 i förnamn?");
-        player2.setFname(input.nextLine());
-        System.out.println("Vad heter spelare 2 i efternamn?");
-        player2.setLname(input.nextLine());
 
+    public void tossingDice(Scanner input) {
+        for (int i = 0; i < 2; i++) {
+            System.out.println(player1.getFname() + " press enter to toss dice!");
+            input.nextLine();
+            player1.addToScore(dice.rollTheDice());
+            System.out.println(player2.getFname() + " press enter to toss dice!");
+            input.nextLine();
+            player2.addToScore(dice.rollTheDice());
+
+        }
     }
 
-    public void tossingDice(Scanner input, Player player1, Player player2, Dice dice) {
-        System.out.println(player1.getFname() + " : Tryck enter för att slå ett tärningslag!");
-        input.nextLine();
-        player1.addToScore(dice.rollTheDice());
-        System.out.println(player2.getFname() + " : Tryck enter för att slå ett tärningslag!");
-        input.nextLine();
-        player2.addToScore(dice.rollTheDice());
-        System.out.println(player1.getFname() + " : Tryck enter för att slå ett tärningslag!");
-        input.nextLine();
-        player1.addToScore(dice.rollTheDice());
-        System.out.println(player2.getFname() + " : Tryck enter för att slå ett tärningslag!");
-        input.nextLine();
-        player2.addToScore(dice.rollTheDice());
-    }
-
-    public void winnerCompare(Player player1, Player player2) {
+    public void winnerCompare() {
         if (player1.getScore() == player2.getScore()) {
             System.out.println("Equal, no winner.");
         } else if (player1.getScore() > player2.getScore()) {
-            System.out.println(player1.getFullName() + "Wins with :" + player1.getScore());
+            System.out.println(player1.getFullName() + " wins with :" + player1.getScore());
 
         } else if (player2.getScore() > player1.getScore()) {
-            System.out.println(player2.getFullName() + "Wins with :" + player2.getScore());
+            System.out.println(player2.getFullName() + " wins with :" + player2.getScore());
         }
     }
 

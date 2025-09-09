@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class Dice {
     Random random = new Random();
-    Dice dice = new Dice();
 
     //Tom konstruktor
     public Dice() {

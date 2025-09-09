@@ -1,15 +1,24 @@
 package se.jensen.anton.dicegame;
 
+import java.util.Scanner;
+
 public class Player {
     private String fname;
     private String lname;
     private int score;
 
-    Player player1 = new Player();
-    Player player2 = new Player();
 
     //tom konstruktor
     public Player() {
+    }
+
+    public void setPlayers(Scanner input) {
+        System.out.println("Vad heter spelaren  i förnamn?");
+        this.setFname(input.nextLine());
+        System.out.println("Vad heter spelaren  i efternamn?");
+        this.setLname(input.nextLine());
+
+
     }
 
     // Kanske ändra här?
@@ -41,6 +50,7 @@ public class Player {
         return fname;
     }
 
+    /// ingen användning
     public String getLname() {
         return lname;
     }
