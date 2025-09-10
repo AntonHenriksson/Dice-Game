@@ -13,12 +13,31 @@ public class Player {
     }
 
     public void setPlayers(Scanner input) {
-        System.out.println("First name of player: ");
-        this.setFname(input.nextLine());
-        System.out.println("Lastname of player: ");
-        this.setLname(input.nextLine());
+        boolean valid = false;
 
+        while (!valid) {
 
+            System.out.println("First name of player: ");
+            try {
+                this.setFname(input.nextLine());
+                valid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " Invalid input, try again");
+            }
+        }
+        valid = false;
+
+        while (!valid) {
+
+            System.out.println("Last name of player: ");
+            try {
+                this.setLname(input.nextLine());
+                valid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " Invalid input, try again");
+
+            }
+        }
     }
 
     // Kanske ändra här?
