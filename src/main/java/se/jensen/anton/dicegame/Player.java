@@ -13,9 +13,9 @@ public class Player {
     }
 
     public void setPlayers(Scanner input) {
-        System.out.println("Vad heter spelaren  i förnamn?");
+        System.out.println("First name of player: ");
         this.setFname(input.nextLine());
-        System.out.println("Vad heter spelaren  i efternamn?");
+        System.out.println("Lastname of player: ");
         this.setLname(input.nextLine());
 
 
