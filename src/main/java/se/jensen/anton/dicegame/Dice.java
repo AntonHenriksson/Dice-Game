@@ -12,7 +12,7 @@ public class Dice {
 
     public int rollTheDice() {
         int diceCast = random.nextInt(6) + 1;
-        System.out.println("Tärningens kast: " + diceCast + "\n---------------------------");
+        System.out.println("Dice cast:  " + diceCast + "\n---------------------------");
         return diceCast;
     }
 

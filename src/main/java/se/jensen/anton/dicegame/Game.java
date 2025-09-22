@@ -19,10 +19,11 @@ public class Game {
     }
 
     public void gameRun(Scanner input) {
+
         while (running) {
             System.out.println("Game Menu \nPlay\nQuit");
-            String menuChoice = "";
-            menuChoice = input.nextLine();
+
+            String menuChoice = input.nextLine();
             if (menuChoice.equalsIgnoreCase("Play")) {
 
                 System.out.println("Player 1 : ");
